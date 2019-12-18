@@ -7,9 +7,9 @@ import seaborn as sns
 import re
 
 ##Columns to drop
-def dropcolumns(df,columns):
-    df=df.drop(columns, axis=1, inplace=True)
-    return df
+##def dropcolumns(df,columns):
+##    df=df.drop(columns, axis=1, inplace=True)
+##    return df
 
 ##Replace functions
 def columnreplace(df,column,string):

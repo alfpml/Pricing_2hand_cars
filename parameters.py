@@ -12,13 +12,13 @@ prcmax=100000
 prcmin=500
 
 ## Params low frequency
-lf_model=200
-lf_brand=400
-lf_carro=400
+lf_model=100
+lf_brand=200
+lf_carro=500
 
 ##Bining params
 ColumnsBin=['Ano','Kilometros','Potencia']
-Bins={'Ano':5,
+Bins={'Ano':8,
       'Kilometros':8,
       'Potencia':8
      }

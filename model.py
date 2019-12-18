@@ -23,7 +23,7 @@ from math import sqrt
 
 ##Input parameters (columns to include and clf model)
 
-def regression(dfm,Xcolumns):
+def regression(dfm,dfcar,Xcolumns):
     ##clf = RandomForestRegressor(n_estimators=250)
     clf = RandomForestRegressor(n_estimators=250)
     X = dfm[Xcolumns]
@@ -35,7 +35,8 @@ def regression(dfm,Xcolumns):
 
     r2_s=r2_score(y_test, y_predr)
     rmse = sqrt(mean_squared_error(y_test, y_predr))
-    return print("r2_score is: {}. RMSE is: {}".format(r2_s,rmse))
-
-    ##y_test=clf.predict(predtest.cartest)
-    ##print(y_test)
+    print("r2_score is: {}. RMSE is: {}".format(r2_s,rmse))
+    
+    Xcar = dfcar[Xcolumns]
+    y_car=clf.predict(Xcar)
+    return y_car

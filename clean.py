@@ -29,7 +29,7 @@ def cleaningfunction(df1):
     df1['Cilindros']=df1['Cilindros'].astype('float', errors='ignore')
     df1['Puertas']=df1['Puertas'].astype('float', errors='ignore')
     
-    df1['Marchas']=df1['Marchas'].astype('int', errors='ignore')
+    df1['Marchas']=df1['Marchas'].astype('float', errors='ignore')
     df1=df1[df1.Marchas.apply(lambda x: x.isnumeric())]
     ##df1[pd.to_numeric(df1['Marchas'], errors='coerce').notnull()]
     
