@@ -1,3 +1,4 @@
+'''
 import pandas as pd
 
 cardict = {
@@ -42,3 +43,4 @@ cols=list(cardict.keys())
 cartest = pd.DataFrame.from_dict(cardict)
 
 print(cartest)
+'''

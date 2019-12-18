@@ -12,36 +12,31 @@ prcmax=100000
 prcmin=500
 
 ## Params low frequency
-lf_model=100
-lf_brand=200
-lf_carro=500
+lf_model=200
+lf_brand=400
+lf_carro=400
 
 ##Bining params
-ColumnsBin=['Longitud','Kilometros','Peso','Potencia']
-Bins={'Longitud':10,
-      'Kilometros':10,
-      'Peso':8,
-      'Potencia':6
+ColumnsBin=['Ano','Kilometros','Potencia']
+Bins={'Ano':5,
+      'Kilometros':8,
+      'Potencia':8
      }
 
 ##weighted params
-n_km=1
-n_ano=1
-n_pot=1.2
+n_km=1.0
+n_ano=1.0
+n_pot=1.0
 
 ##Normalization
-columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Plazas','Velocidad','Cmixto','Longitud']
+columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Cmixto','Plazas']
 ColumnsNorm=["Ano",'Potencia','Kilometros','Longitud','Cilindros','Velocidad']
 ColumnsNormmaxmin=[]
-
-##Bining of longitud/peso to try to adjust for brands distinct models
-ColumnsBin=['Longitud','Kilometros','Peso','Potencia','Cambio','Traccion','Puertas','Marchas']
-Bins={'Longitud':8,
-    'Kilometros':8,
-    'Peso':8,
-    'Potencia':8
-    }
 
 ##Regression parameters
 ##clf = RandomForestRegressor(n_estimators=250)
 ##Xcolumns = ["Ano",'Potencia','Kilometros','Longitud','Cilindros','Velocidad',]
+
+
+##mongo query
+query={'Brand':'Bmw'},{'Model': 'Bmw Serie 1'}

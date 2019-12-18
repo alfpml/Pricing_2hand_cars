@@ -3,6 +3,7 @@ import parameters as prm
 import mongoconnect as mc
 import clean as cln
 import model as mdl
+import car_input as ci
 import pandas as pd
 import numpy as np
 import json
@@ -14,19 +15,22 @@ import getpass
 client = MongoClient(mc.connection)
 db, coll = mc.connectCollection('carpricing','cars')
 
-query = {'Brand':"Audi"}
-Brand_q = coll.find(query)
+##query = {'Brand':ci.InputBrand}
+##Brand_q = coll.find(query)
+
+Brand_q = coll.find()
 dfBrand=pd.DataFrame(Brand_q)
 dfBrand=cln.dropcolumns(dfBrand,prm.columnsdrop)
-
+dfBrand['inputcar']=0
 car_columns=cln.listcolumns(dfBrand)
 print(car_columns)
 
 ##print("lenghth df is {}".format(len(Brand_audi2)))
 dfBrand_N=cln.cleaningfunction(dfBrand)
-##print("lenghth dfn is {}".format(len(Brand_normalized)))
+print("lenghth dfBrand_N is {}".format(len(dfBrand_N)))
 
 Xcolumns=cln.listcolumns(dfBrand_N)
+print("Xcolumns are:")
 print(Xcolumns)
 
 ##ycolumns=[col for col in dfBrand_N.columns]

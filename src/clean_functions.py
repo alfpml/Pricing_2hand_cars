@@ -66,7 +66,7 @@ def puertas(puertas):
 
 
 def marchas(marchas):
-    if marchas>=6:
+    if float(marchas)>=6:
         return 1
     else:
         return 0

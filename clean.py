@@ -11,10 +11,11 @@ import parameters as prm
 ##print(df1.shape)
 
 def listcolumns(df):
+    df = df.drop('Precio', 1)
     list_col=[col for col in df.columns]
     list_col_len=len(list_col)-1
     list_col=list_col[-list_col_len:]
-    print(list_col)
+    return list_col
 
 def dropcolumns(df,columnsdrop):
     df.drop(columnsdrop, axis=1, inplace=True)
@@ -23,15 +24,21 @@ def dropcolumns(df,columnsdrop):
 
 def cleaningfunction(df1):
     ##Casting columns
-    df1['Potencia']=df1['Potencia'].dropna().astype('float', errors='ignore')
-    df1['Cilindros']=df1['Cilindros'].dropna().astype('float', errors='ignore')
-    df1['Puertas']=df1['Puertas'].dropna().astype('float', errors='ignore')
-    df1['Marchas']=df1['Marchas'].dropna().astype('float', errors='ignore')
-    df1['Kilometros']=df1['Kilometros'].dropna().astype('float', errors='ignore')
-    df1['Precio']=df1['Precio'].dropna().astype('float', errors='ignore')
-    ##df1['Longitud']=df1['Longitud'].dropna().astype('float', errors='ignore')
-    ##df1['Velocidad']=df1['Velocidad'].dropna().astype('float', errors='ignore')
+    df1=df1.dropna()
+    df1['Potencia']=df1['Potencia'].astype('float', errors='ignore')
+    df1['Cilindros']=df1['Cilindros'].astype('float', errors='ignore')
+    df1['Puertas']=df1['Puertas'].astype('float', errors='ignore')
+    
+    df1['Marchas']=df1['Marchas'].astype('int', errors='ignore')
+    df1=df1[df1.Marchas.apply(lambda x: x.isnumeric())]
+    ##df1[pd.to_numeric(df1['Marchas'], errors='coerce').notnull()]
+    
+    df1['Kilometros']=df1['Kilometros'].astype('float', errors='ignore')
+    df1['Precio']=df1['Precio'].astype('float', errors='ignore')
+    df1['Longitud']=df1['Longitud'].astype('float', errors='ignore')
+    df1['Velocidad']=df1['Velocidad'].astype('float', errors='ignore')
     ##df1['Cmixto']=df1['Cmixto'].dropna().astype('float', errors='ignore')
+    df1=df1.dropna()
     print("casting")
 
     ##Encoding categorical variables
@@ -45,7 +52,7 @@ def cleaningfunction(df1):
     ##Encoding column año
     df1['Ano'] = df1['Ano'].str[-4:]
     df1=df1.dropna()
-    df1['Ano'] = df1['Ano'].dropna().astype('float', errors='ignore')
+    df1['Ano'] = df1['Ano'].astype('float', errors='ignore')
     df1['Ano']=2019-df1['Ano']
     print("encoding año")
 
@@ -64,9 +71,9 @@ def cleaningfunction(df1):
     df1 = df1[df1["Precio"]>=prm.prcmin]
     print("outliers precio")
 
-    ##df1=df1.dropna()
-    ##df1 = df1[df1["Longitud"] !=0]
-    ##df1 = df1[df1["Velocidad"] !=0]
+    df1=df1.dropna()
+    df1 = df1[df1["Longitud"] !=0]
+    df1 = df1[df1["Velocidad"] !=0]
     ##df1 = df1[df1['Cmixto'] !=0]
     ##print("removing zeros")
     
@@ -102,9 +109,9 @@ def cleaningfunction(df1):
 
 
     ###Weighting features
-    ##df1["Kilometros"]=df1["Kilometros"]*prm.n_km
-    ##df1["Ano"]=df1["Ano"]*n_ano
-    ##df1["Potencia"]=df1["Potencia"]*prm.n_pot
+    df1["Kilometros"]=df1["Kilometros"]*prm.n_km
+    df1["Ano"]=df1["Ano"]*prm.n_ano
+    df1["Potencia"]=df1["Potencia"]*prm.n_pot
 
     ##print(df1.shape)
     ##dfcols=[col for col in df1.colums]
