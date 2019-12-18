@@ -30,7 +30,7 @@ n_ano=1
 n_pot=1.2
 
 ##Normalization
-columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Plazas']
+columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Plazas','Velocidad','Cmixto','Longitud']
 ColumnsNorm=["Ano",'Potencia','Kilometros','Longitud','Cilindros','Velocidad']
 ColumnsNormmaxmin=[]
 

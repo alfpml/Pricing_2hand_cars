@@ -10,19 +10,28 @@ import parameters as prm
 ##df1 = mc.Brand_audi
 ##print(df1.shape)
 
+def listcolumns(df):
+    list_col=[col for col in df.columns]
+    list_col_len=len(list_col)-1
+    list_col=list_col[-list_col_len:]
+    print(list_col)
+
+def dropcolumns(df,columnsdrop):
+    df.drop(columnsdrop, axis=1, inplace=True)
+    df=df.dropna()
+    return df
+
 def cleaningfunction(df1):
     ##Casting columns
-    df1.drop(prm.columnsdrop, axis=1, inplace=True)
-    df1=df1.dropna()
     df1['Potencia']=df1['Potencia'].dropna().astype('float', errors='ignore')
     df1['Cilindros']=df1['Cilindros'].dropna().astype('float', errors='ignore')
     df1['Puertas']=df1['Puertas'].dropna().astype('float', errors='ignore')
     df1['Marchas']=df1['Marchas'].dropna().astype('float', errors='ignore')
     df1['Kilometros']=df1['Kilometros'].dropna().astype('float', errors='ignore')
     df1['Precio']=df1['Precio'].dropna().astype('float', errors='ignore')
-    df1['Longitud']=df1['Longitud'].dropna().astype('float', errors='ignore')
-    df1['Velocidad']=df1['Velocidad'].dropna().astype('float', errors='ignore')
-    df1['Cmixto']=df1['Cmixto'].dropna().astype('float', errors='ignore')
+    ##df1['Longitud']=df1['Longitud'].dropna().astype('float', errors='ignore')
+    ##df1['Velocidad']=df1['Velocidad'].dropna().astype('float', errors='ignore')
+    ##df1['Cmixto']=df1['Cmixto'].dropna().astype('float', errors='ignore')
     print("casting")
 
     ##Encoding categorical variables
@@ -56,10 +65,10 @@ def cleaningfunction(df1):
     print("outliers precio")
 
     ##df1=df1.dropna()
-    df1 = df1[df1["Longitud"] !=0]
-    df1 = df1[df1["Velocidad"] !=0]
-    df1 = df1[df1['Cmixto'] !=0]
-    print("removing zeros")
+    ##df1 = df1[df1["Longitud"] !=0]
+    ##df1 = df1[df1["Velocidad"] !=0]
+    ##df1 = df1[df1['Cmixto'] !=0]
+    ##print("removing zeros")
     
 
 

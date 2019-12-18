@@ -15,16 +15,24 @@ client = MongoClient(mc.connection)
 db, coll = mc.connectCollection('carpricing','cars')
 
 query = {'Brand':"Audi"}
-Brand_audi = coll.find(query)
-Brand_audi2=pd.DataFrame(Brand_audi)
-print("lenghth df is {}".format(len(Brand_audi2)))
-Brand_normalized=cln.cleaningfunction(Brand_audi2)
-print("lenghth dfn is {}".format(len(Brand_normalized)))
+Brand_q = coll.find(query)
+dfBrand=pd.DataFrame(Brand_q)
+dfBrand=cln.dropcolumns(dfBrand,prm.columnsdrop)
 
-ycolumns=[col for col in Brand_normalized.columns]
-lc=len(ycolumns)-1
-Xcolumns=ycolumns[-lc:]
-print(ycolumns)
-##Xcolumns=['Ano', 'Potencia', 'Kilometros', 'Puertas', 'Cambio', 'Longitud', 'Velocidad', 'Cmixto', 'Cilindros', 'Marchas', 'Traccion', 'Combustible_Diesel', 'Combustible_Gasolina', 'Model_Audi A1', 'Model_Audi A3', 'Model_Audi A4', 'Model_Audi A5', 'Model_Audi A6','Carroceria_Berlina']
+car_columns=cln.listcolumns(dfBrand)
+print(car_columns)
+
+##print("lenghth df is {}".format(len(Brand_audi2)))
+dfBrand_N=cln.cleaningfunction(dfBrand)
+##print("lenghth dfn is {}".format(len(Brand_normalized)))
+
+Xcolumns=cln.listcolumns(dfBrand_N)
 print(Xcolumns)
-mdl.regression(Brand_normalized,Xcolumns)
+
+##ycolumns=[col for col in dfBrand_N.columns]
+##lc=len(ycolumns)-1
+##Xcolumns=ycolumns[-lc:]
+##print(ycolumns)
+##Xcolumns=['Ano', 'Potencia', 'Kilometros', 'Puertas', 'Cambio', 'Longitud', 'Velocidad', 'Cmixto', 'Cilindros', 'Marchas', 'Traccion', 'Combustible_Diesel', 'Combustible_Gasolina', 'Model_Audi A1', 'Model_Audi A3', 'Model_Audi A4', 'Model_Audi A5', 'Model_Audi A6','Carroceria_Berlina']
+##print(Xcolumns)
+mdl.regression(dfBrand_N,Xcolumns)
