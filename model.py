@@ -1,4 +1,5 @@
 # Importing libraries:
+import parameters as prm
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
@@ -17,26 +18,24 @@ from sklearn.linear_model import LinearRegression
 
 from math import sqrt
 
-dfm=pd.DataFrame(pd.read_csv("./output/cars_clean2.csv"))
-print(dfm.shape)
+##dfm=pd.DataFrame(pd.read_csv("./output/cars_clean2.csv"))
+##print(dfm.shape)
 
 ##Input parameters (columns to include and clf model)
 
-columns=clean.dfcols
+def regression(dfm,Xcolumns):
+    ##clf = RandomForestRegressor(n_estimators=250)
+    clf = RandomForestRegressor(n_estimators=250)
+    X = dfm[Xcolumns]
+    y = dfm['Precio']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
-clf = RandomForestRegressor(n_estimators=250)
+    clf.fit(X_train, y_train)
+    y_predr = clf.predict(X_test)
 
-X = dfm[columns]
-y = dfm['Precio']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+    r2_s=r2_score(y_test, y_predr)
+    rmse = sqrt(mean_squared_error(y_test, y_predr))
+    return print("r2_score is: {}. RMSE is: {}".format(r2_s,rmse))
 
-clf.fit(X_train, y_train)
-y_predr = clf.predict(X_test)
-
-r2_score=r2_score(y_test, y_predr)
-print("r2_score is: {}".format(r2_score))
-rmse = sqrt(mean_squared_error(y_test, y_predr))
-print("rmse is: {}".format(rmse))
-
-##y_test=clf.predict(predtest.cartest)
-##print(y_test)
+    ##y_test=clf.predict(predtest.cartest)
+    ##print(y_test)

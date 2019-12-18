@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 import getpass
 import json
+import pandas as pd
 
 #Get Password
 password = getpass.getpass("Insert your AtlasMongoDB admin_1019 password: ")
@@ -12,9 +13,3 @@ def connectCollection(database, collection):
     db = client[database]
     coll = db[collection]
     return db, coll
-
-db, coll = connectCollection('pricingcars','cars_all')
-
-with open('./input/cars_all.json') as f:
-    cars_all_json = json.load(f)
-coll.insert_many(cars_all_json)
