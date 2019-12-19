@@ -17,6 +17,6 @@ input_car={
 'Marchas':6.0,
 'Traccion':"Delantera",
 'Combustible':"Diesel",
-'Carroceria':"Berlina",
+##'Carroceria':"Berlina",
 'inputcar':1
 }

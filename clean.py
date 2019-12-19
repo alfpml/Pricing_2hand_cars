@@ -103,7 +103,7 @@ def cleaningfunction(df1):
     ##removing low frequency Brands and models
     df1=cl_f.RemoveLowFreq(df1,"Model",prm.lf_model)
     df1=cl_f.RemoveLowFreq(df1,"Brand",prm.lf_brand)
-    df1=cl_f.RemoveLowFreq(df1,"Carroceria",prm.lf_carro)
+    ##df1=cl_f.RemoveLowFreq(df1,"Carroceria",prm.lf_carro)
     ##print("removing low freq")
     ##print(df1[df1['inputcar']==1])
 
@@ -118,7 +118,7 @@ def cleaningfunction(df1):
     df1 = pd.get_dummies(df1, columns=['Combustible'])
     df1 = pd.get_dummies(df1, columns=['Brand'])
     df1 = pd.get_dummies(df1, columns=['Model'])
-    df1 = pd.get_dummies(df1, columns=['Carroceria'])
+    ##df1 = pd.get_dummies(df1, columns=['Carroceria'])
     ##print("get dummies")
 
 

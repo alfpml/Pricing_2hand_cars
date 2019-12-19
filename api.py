@@ -3,42 +3,57 @@ from bson.json_util import dumps
 import json
 import dns
 import requests
-import mongofnc as mf
+import src.mongoconnect as mf
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 @route("/")
 def index():
-    return {'This is the chat sentiment api'}
+    return {'Car pricing app'}
 
-@get("/<chat_id>/messages")
-def getMessages(chat_id):
+@get("/{name}/car/price")
+def getPrice(name):
     """Get messages from a given chat"""
     return dumps(coll.find({'idChat':int(chat_id)}))
 
-@get("/users")
-def getUsers():
-    """Get all users"""
-    return dumps(coll.aggregate([{"$group":{"_id": {"idUser":"$idUser", "userName":"$userName"}}}]))
+@post('/car/create')
+def inputCar():
+    """Input car detils"""
+    Name = str(request.forms.get("Name"))
+    Brand = str(request.forms.get("Brand"))
+    Model = str(request.forms.get("Model"))
+    Ano = str(request.forms.get("Ano"))
+    Potencia = str(request.forms.get("Potencia"))
+    Kilometros = str(request.forms.get("Kilometros"))
 
-@get("/<username>/usermessages")
-def getUserMessages(username):
-    """Gets user messages"""
-    return dumps(coll.find({'userName':str(username)},{"text": 1,"_id":0}))
+    Puertas = str(request.forms.get("Puertas"))
+    Cambio = str(request.forms.get("Cambio"))
+    Cilindros = str(request.forms.get("Cilindros"))
+    Marchas = str(request.forms.get("Marchas"))
+    Traccion = str(request.forms.get("Traccion"))
+    Combustible = str(request.forms.get("Combustible"))
 
-@post('/user/create')
-def createuser():
-    """New user creation"""
-    name = str(request.forms.get("name"))
-    new_id = max(user.distinct("idUser")) + 1
-    names = list(user.aggregate([{'$project':{'userName':1}}]))
+    input_car={
+    'Precio':9999,
+    'Brand':InputBrand,
+    'Model':InputModel,
+    'Ano': Ano, 
+    'Potencia':Potencia,
+    'Kilometros':Kilometros,
+    'Puertas':5,
+    'Cambio':Cambio, 
+    ##'Longitud':420.0,
+    ##'Velocidad':207.0,
+    'Cilindros':Cilindros,
+    'Marchas':Marchas,
+    'Traccion':Traccion,
+    'Combustible':Combustible,
+    ##'Carroceria':"Berlina",
+    'inputcar':1
+    }
+    
+    coll.insert_one(input_car)
+    return f"{name}'s car added"
 
-    if name in [n['userName'] for n in names]:
-        return "name already in database"
-    else:
-        new_user = {
-            "idUser": new_id,
-            "userName": name
-        }
-        user.insert_one(new_user)
-        return f"user_id for {name} is {new_id}"
+db, coll = mc.connectCollection('carpricing','cars')
+run(host="0.0.0.0", port=8080, debug=True)
