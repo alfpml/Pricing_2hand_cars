@@ -4,7 +4,7 @@ kmmax=300000
 kmmin=2000
 
 ## params to clean año column (max/min)
-anmax=15
+anmax=18
 anmin=1
 
 ## params to clean precio column (max/min)
@@ -29,8 +29,8 @@ n_ano=1.0
 n_pot=1.0
 
 ##Normalization
-columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Cmixto','Plazas']
-ColumnsNorm=["Ano",'Potencia','Kilometros','Longitud','Cilindros','Velocidad']
+columnsdrop=['Emisiones','Peso','0-100km/h','Cilindrada','Transmision','Parmaximo','Curbano','Extraurbano','Cmixto','Plazas','Longitud','Velocidad']
+ColumnsNorm=["Ano",'Potencia','Kilometros','Cilindros']
 ColumnsNormmaxmin=[]
 
 ##Regression parameters

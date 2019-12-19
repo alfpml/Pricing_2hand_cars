@@ -3,7 +3,6 @@ import parameters as prm
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import predtest
 import clean
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -23,7 +22,7 @@ from math import sqrt
 
 ##Input parameters (columns to include and clf model)
 
-def regression(dfm,dfcar,Xcolumns):
+def regression(dfm,dfcar,Xcolumns,modelo):
     ##clf = RandomForestRegressor(n_estimators=250)
     clf = RandomForestRegressor(n_estimators=250)
     X = dfm[Xcolumns]
@@ -36,7 +35,7 @@ def regression(dfm,dfcar,Xcolumns):
     r2_s=r2_score(y_test, y_predr)
     rmse = sqrt(mean_squared_error(y_test, y_predr))
     print("r2_score is: {}. RMSE is: {}".format(r2_s,rmse))
-    
+
     Xcar = dfcar[Xcolumns]
     y_car=clf.predict(Xcar)
-    return y_car
+    return "Precio de Venta para tu {} es: {}€".format(modelo,y_car[0])
