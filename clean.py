@@ -1,9 +1,9 @@
+import src.parameters as prm
 import src.clean_functions as cl_f
 import pandas as pd
 import numpy as np
 import json
 import re
-import parameters as prm
 
 
 ###Bringing up all CSVs from scraping

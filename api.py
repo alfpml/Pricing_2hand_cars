@@ -4,11 +4,11 @@ import json
 import dns
 import requests
 import src.mongoconnect as mf
-import src.clean_functions as cl_f
-import parameters as prm
+##import src.clean_functions as cl_f
+import src.parameters as prm
 import clean as cln
-import model as mdl
-import car_input as ci
+
+import src.model as mdl
 import pandas as pd
 import numpy as np
 import re

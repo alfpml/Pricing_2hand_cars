@@ -1,9 +1,9 @@
 import src.clean_functions as cl_f
-import parameters as prm
+import src.parameters as prm
 import src.mongoconnect as mc
-import clean as cln
-import model as mdl
-import car_input as ci
+import src.clean as cln
+import src.model as mdl
+import src.car_input as ci
 
 import pandas as pd
 import numpy as np
@@ -43,4 +43,5 @@ df_Car=dfBrand_N[dfBrand_N['inputcar']==1]
 Xcolumns=cln.listcolumns(df_Train)
 
 ###5. Performing Regression
-print(mdl.regression(df_Train,df_Car,Xcolumns,ci.InputModel))
+price=mdl.regression(df_Train,df_Car,Xcolumns)
+print("El precio de venta recomendado para tu {} es de {}€")
