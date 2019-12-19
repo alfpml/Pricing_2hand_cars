@@ -33,29 +33,10 @@ def cleaningfunction(df1):
 
     df1['Kilometros']=[pd.to_numeric(x, errors='coerce',downcast='float') for x in df1['Kilometros']]
     df1['Precio']=[pd.to_numeric(x, errors='coerce',downcast='float') for x in df1['Precio']]
-    ##df1['Longitud']=[pd.to_numeric(x, errors='coerce',downcast='float') for x in df1['Longitud']]
-    ##df1['Velocidad']=[pd.to_numeric(x, errors='coerce',downcast='float') for x in df1['Velocidad']]
-    
-    
     
     df1=df1.dropna()
     df1.reset_index(inplace=True)
     ##print("casting to numeric")
-    ##print(df1[df1['inputcar']==1])
-
-    ##df1['Potencia']=df1['Potencia'].astype('float', errors='ignore')
-    ##df1['Cilindros']=df1['Cilindros'].astype('float', errors='ignore')
-    ##df1['Puertas']=df1['Puertas'].astype('float', errors='ignore')
-    ##df1['Marchas']=df1['Marchas'].astype('float', errors='ignore')
-    ##df1=df1[df1.Marchas.apply(lambda x: x.isnumeric())]
-
-    ##df1['Kilometros']=df1['Kilometros'].astype('float', errors='ignore')
-    ##df1['Precio']=df1['Precio'].astype('float', errors='ignore')
-    ##df1['Longitud']=df1['Longitud'].astype('float', errors='ignore')
-    ##df1['Velocidad']=df1['Velocidad'].astype('float', errors='ignore')
-    ##df1['Cmixto']=df1['Cmixto'].dropna().astype('float', errors='ignore')
-    #3df1=df1.dropna()
-    ##print("casting")
     ##print(df1[df1['inputcar']==1])
 
     ##Encoding categorical variables
@@ -78,7 +59,7 @@ def cleaningfunction(df1):
     ##Dropping ouliers rows in km
     df1 = df1[df1["Kilometros"]<=prm.kmmax]
     df1 = df1[df1["Kilometros"]>=prm.kmmin]
-    ##print("outliers km")
+    print("outliers km")
 
     ##Dropping ouliers rows for año
     df1 = df1[df1["Ano"]<=prm.anmax]

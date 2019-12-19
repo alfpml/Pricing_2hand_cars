@@ -36,7 +36,3 @@ ColumnsNormmaxmin=[]
 ##Regression parameters
 ##clf = RandomForestRegressor(n_estimators=250)
 ##Xcolumns = ["Ano",'Potencia','Kilometros','Longitud','Cilindros','Velocidad',]
-
-
-##mongo query
-query={'Brand':'Bmw'},{'Model': 'Bmw Serie 1'}

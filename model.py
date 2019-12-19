@@ -13,7 +13,9 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.datasets import make_classification
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
 
 from math import sqrt
 
@@ -22,9 +24,11 @@ from math import sqrt
 
 ##Input parameters (columns to include and clf model)
 
-def regression(dfm,dfcar,Xcolumns,modelo):
-    ##clf = RandomForestRegressor(n_estimators=250)
-    clf = RandomForestRegressor(n_estimators=250)
+def regression(dfm,dfcar,Xcolumns):
+    ##clf = KNeighborsClassifier(n_neighbors=10)
+    clf = RandomForestRegressor(n_estimators=300)
+    ##clf = svm.SVR()
+    ##clf = LogisticRegression()
     X = dfm[Xcolumns]
     y = dfm['Precio']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
@@ -38,4 +42,4 @@ def regression(dfm,dfcar,Xcolumns,modelo):
 
     Xcar = dfcar[Xcolumns]
     y_car=clf.predict(Xcar)
-    return "Precio de Venta para tu {} es: {}€".format(modelo,y_car[0])
+    return int(y_car[0])
